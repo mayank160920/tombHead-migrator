@@ -7,3 +7,8 @@
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.warning {
+    text-align: center;
+    margin: auto;
+}

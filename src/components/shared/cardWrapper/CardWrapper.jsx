@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card } from "../";
+import { useWeb3Context } from "../../../context/web3/Web3Context";
+import { useNFTScanner } from "../../../context/web3/NFTScannerContext";
+import { fetchTokenURI } from "../../../utils/web3/fetchTokenUri";
 import style from "./cardWrapper.module.css";
 
 export function CardWrapper(props) {
-  const multiplier = [...Array(50).keys()];
+  const { address } = useWeb3Context();
+  const { scanning, ownedNFTs, startScanning } = useNFTScanner();
+
+  useEffect(() => {
+    if (!scanning && address) {
+      startScanning();
+    }
+  }, [address]);
+
+  if (!address) {
+    return (
+      <p className={style.warning}>You need to connect your wallet first !</p>
+    );
+  }
 
   return (
     <div className={style.cardWrapper}>
-      {multiplier.map((id) => (
-        <Card
-          key={id}
-          imageUrl="https://media.discordapp.net/attachments/890684698592944158/890692035449851954/unknown.png?width=250&height=250"
-        />
+      {ownedNFTs.map((index) => (
+          <Card
+            key={index}
+            tokenId={index}
+          />
       ))}
     </div>
   );

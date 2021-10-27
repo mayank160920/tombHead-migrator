@@ -5,13 +5,18 @@
   padding: 10px;
   max-width: 250px;
   max-height: 300px;
-  margin: auto;
+  margin: 10px auto;
   border-radius: var(--borderRadius);
 }
 
 .card > img {
   border-radius: var(--borderRadius);
   width: -webkit-fill-available;
+}
+
+.card__text {
+    text-align: center;
+    margin: 50px;
 }
 
 .card__buttons {

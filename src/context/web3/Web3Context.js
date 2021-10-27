@@ -1,25 +1,22 @@
 import { useState, createContext, useContext } from "react";
 
-const Web3Context = createContext();
+const Web3Context = createContext({});
 
-function Web3ContextProvider({ children }) {
-  const [account, setAccount] = useState({
-    address: null,
-    chain: null,
-    loading: false
-  });
+export function Web3ContextProvider({ children }) {
+  const [address, setAddress] = useState(null);
+  const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
   const [eventsRegistered, setEventsRegistered] = useState(false);
 
   async function connectAccount() {
     try {
-      setAccount({ loading: true });
+      setLoading(true);
 
       // request account
       const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts"
+        method: "eth_requestAccounts",
       });
-      setAccount({ address: window.Web3.utils.toChecksumAddress(accounts[0]) });
+      setAddress(window.Web3.utils.toChecksumAddress(accounts[0]));
 
       // request chainId
       const chainId = await window.ethereum.request({ method: "eth_chainId" });
@@ -34,10 +31,10 @@ function Web3ContextProvider({ children }) {
         setEventsRegistered(true);
       }
     } catch (error) {
-      setAccount({ address: null });
+      setAddress(null);
       setError(error.message);
     } finally {
-      setAccount({ loading: false });
+      setLoading(false);
     }
   }
 
@@ -45,12 +42,10 @@ function Web3ContextProvider({ children }) {
     // accountChange Handler
     window.ethereum.on("accountsChanged", (accounts) => {
       if (!accounts.length) {
-        setAccount({ address: null });
+        setAddress(null);
         setError("Connect Your Wallet to access the site");
       } else {
-        setAccount({
-          address: window.Web3.utils.toChecksumAddress(accounts[0])
-        });
+        setAddress(window.Web3.utils.toChecksumAddress(accounts[0]));
       }
     });
 
@@ -65,11 +60,11 @@ function Web3ContextProvider({ children }) {
   return (
     <Web3Context.Provider
       value={{
-        account,
-        setAccount,
+        address,
+        loading,
         connectAccount,
         error,
-        eventsRegistered
+        eventsRegistered,
       }}
     >
       {children}
