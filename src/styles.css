@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Rhodium+Libre&family=Roboto:wght@100;300;400;500&display=swap");
+
+:root {
+  --bgPrimary: black;
+  --bgSecondary: #0e0e0e;
+  --bgText: #fff;
+  --fgText: #777777;
+  --fgPrimary: #3d4acc;
+  --fgSecondary: yellow;
+  --borderRadius: 5px;
+}
+
+* {
+  font-family: "Rhodium Libre", serif;
+  font-size: min(4vw, 16px);
+  color: var(--bgText);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: var(--bgPrimary);
+}
+
+.app {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}

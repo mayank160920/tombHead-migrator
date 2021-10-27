@@ -1,0 +1,24 @@
+.card {
+  background: var(--bgSecondary);
+  width: 90%;
+  height: 90%;
+  padding: 10px;
+  max-width: 250px;
+  max-height: 300px;
+  margin: auto;
+  border-radius: var(--borderRadius);
+}
+
+.card > img {
+  border-radius: var(--borderRadius);
+  width: -webkit-fill-available;
+}
+
+.card__buttons {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
