@@ -9,6 +9,7 @@
 }
 
 .warning {
-    text-align: center;
-    margin: auto;
+  color: var(--bgText);
+  text-align: center;
+  margin: auto;
 }

@@ -33,8 +33,9 @@ export function NFTScanProvider(props) {
     <NFTScannerContext.Provider
       value={{
         scanning,
-        ownedNFTs,
         startScanning,
+        ownedNFTs,
+        setOwnedNFTs
       }}
     >
       {props.children}

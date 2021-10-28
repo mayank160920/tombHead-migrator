@@ -1,7 +1,9 @@
 import { useState } from "react";
-import "./styles.css";
-
+import { ToastContainer } from "react-toastify";
 import { Header, CardWrapper, Footer } from "./components/shared";
+
+import "react-toastify/dist/ReactToastify.css";
+import "./styles.css";
 
 export default function App() {
   const [wallet, setWallet] = useState(false);
@@ -11,6 +13,7 @@ export default function App() {
       <Header />
       <CardWrapper />
       <Footer />
+      <ToastContainer style={{overflowWrap: 'anywhere'}} />
     </div>
   );
 }

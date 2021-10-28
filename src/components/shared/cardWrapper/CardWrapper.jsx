@@ -9,11 +9,11 @@ export function CardWrapper(props) {
   const { address } = useWeb3Context();
   const { scanning, ownedNFTs, startScanning } = useNFTScanner();
 
+
   useEffect(() => {
     if (!scanning && address) {
       startScanning();
-    }
-  }, [address]);
+    }}, [address]);
 
   if (!address) {
     return (

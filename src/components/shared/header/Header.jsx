@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useWeb3Context } from "../../../context/web3/Web3Context";
 import { Spinner } from "../index";
 import style from "./header.module.css";
+import { toast } from "react-toastify";
 
 export function Header() {
-  const { address, loading, connectAccount } = useWeb3Context();
+  const { address, loading, connectAccount, error } = useWeb3Context();
 
   function parseAddress(_address) {
     return _address.slice(0, 4) + "..." + _address.slice(-4);
   }
+
+  useEffect(() => {
+    if (address) {
+        toast.success("Wallet Connected",{toastId : 'address'});
+    }}, [address]);
+
+  useEffect(() => {
+    if (error) {
+        toast.error(error.message);
+    }}, [error]);
 
   return (
     <div className={style.header}>
@@ -16,7 +27,7 @@ export function Header() {
         TombHeads Migrator
       </p>
       {address ? (
-        <p>{parseAddress(address)}</p>
+        <p className={style.address}>{parseAddress(address)}</p>
       ) : (
         <a className={style.connectButton} onClick={() => connectAccount()}>
           {loading ? <Spinner /> : "Connect Wallet"}

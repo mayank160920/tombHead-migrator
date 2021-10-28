@@ -24,3 +24,7 @@
 .connectButton:hover {
   cursor: pointer;
 }
+
+.address {
+  color: var(--bgText);
+}

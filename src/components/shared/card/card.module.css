@@ -15,8 +15,9 @@
 }
 
 .card__text {
-    text-align: center;
-    margin: 50px;
+  color: var(--bgText);
+  text-align: center;
+  margin: 50px;
 }
 
 .card__buttons {

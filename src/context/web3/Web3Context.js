@@ -17,12 +17,12 @@ export function Web3ContextProvider({ children }) {
         method: "eth_requestAccounts",
       });
       setAddress(window.Web3.utils.toChecksumAddress(accounts[0]));
+      if (error) {setError(null)}
 
       // request chainId
       const chainId = await window.ethereum.request({ method: "eth_chainId" });
       if (parseInt(chainId) !== 250) {
-        setError("Please select FTM Network in your wallet");
-        return;
+        throw Error("Please select FTM Network in your wallet");
       }
 
       // check if events are registered
@@ -30,9 +30,10 @@ export function Web3ContextProvider({ children }) {
         registerEvents();
         setEventsRegistered(true);
       }
+
     } catch (error) {
       setAddress(null);
-      setError(error.message);
+      setError(error);
     } finally {
       setLoading(false);
     }
@@ -43,9 +44,10 @@ export function Web3ContextProvider({ children }) {
     window.ethereum.on("accountsChanged", (accounts) => {
       if (!accounts.length) {
         setAddress(null);
-        setError("Connect Your Wallet to access the site");
+        setError(Error("Connect Your Wallet to access the site"));
       } else {
         setAddress(window.Web3.utils.toChecksumAddress(accounts[0]));
+        setError(null);
       }
     });
 

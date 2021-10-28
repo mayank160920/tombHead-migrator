@@ -3,8 +3,12 @@ import style from "./button.module.css";
 
 export function Button(props) {
   return (
-    <a className={style.button} href="#" onClick={props.onClick}>
+    <button 
+        className={props.disabled ? style.buttonDisabled : style.button} 
+        onClick={props.onClick} 
+        disabled={props.disabled}
+    >
       {props.text}
-    </a>
+    </button>
   );
 }

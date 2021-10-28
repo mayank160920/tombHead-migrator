@@ -8,12 +8,13 @@
   --fgPrimary: #3d4acc;
   --fgSecondary: yellow;
   --borderRadius: 5px;
+
+  /* --toastify-toast-width: '80%'; */
 }
 
 * {
   font-family: "Rhodium Libre", serif;
   font-size: min(4vw, 16px);
-  color: var(--bgText);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
