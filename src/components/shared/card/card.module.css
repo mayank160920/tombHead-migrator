@@ -11,7 +11,8 @@
 
 .card > img {
   border-radius: var(--borderRadius);
-  width: -webkit-fill-available;
+  width: 100%;
+  max-width: 250px;
 }
 
 .card__text {

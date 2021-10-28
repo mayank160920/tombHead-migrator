@@ -27,4 +27,7 @@
 
 .address {
   color: var(--bgText);
+  background-color: var(--fgPrimary);
+  border-radius: var(--borderRadius);
+  padding: 5px 10px;
 }

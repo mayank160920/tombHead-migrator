@@ -13,13 +13,13 @@ export function NFTScanProvider(props) {
   async function startScanning() {
     setScanning(true);
 
-    const web3 = new Web3(window.ethereum);
+    const web3 = new window.Web3(window.ethereum);
     const zftcContract = new web3.eth.Contract(zftc.abi, zftc.address);
-    for (let index of nftList.slice(5,22)) {
+    for (let index of nftList) {
       try {
         const result = await zftcContract.methods.ownerOf(index).call();
-        if (result !== address) {
-            setOwnedNFTs((oldOwnerNFTs) => [...oldOwnerNFTs,index])
+        if (result === address) {
+          setOwnedNFTs((oldOwnerNFTs) => [...oldOwnerNFTs, index]);
         }
       } catch (error) {
         console.warn(error);

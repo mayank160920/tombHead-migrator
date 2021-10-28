@@ -21,10 +21,6 @@ export function Web3ContextProvider({ children }) {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts"
       });
-      setAddress(window.Web3.utils.toChecksumAddress(accounts[0]));
-      if (error) {
-        setError(null);
-      }
 
       // request chainId
       const chainId = await window.ethereum.request({ method: "eth_chainId" });
@@ -39,6 +35,11 @@ export function Web3ContextProvider({ children }) {
       if (!eventsRegistered) {
         registerEvents();
         setEventsRegistered(true);
+      }
+
+      setAddress(window.Web3.utils.toChecksumAddress(accounts[0]));
+      if (error) {
+        setError(null);
       }
     } catch (error) {
       setAddress(null);
