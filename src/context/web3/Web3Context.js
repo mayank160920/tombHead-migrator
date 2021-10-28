@@ -12,17 +12,27 @@ export function Web3ContextProvider({ children }) {
     try {
       setLoading(true);
 
+      // check if wallet has metamask
+      if (!window.ethereum) {
+        throw Error("You need Metamask to connect !");
+      }
+
       // request account
       const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
+        method: "eth_requestAccounts"
       });
       setAddress(window.Web3.utils.toChecksumAddress(accounts[0]));
-      if (error) {setError(null)}
+      if (error) {
+        setError(null);
+      }
 
       // request chainId
       const chainId = await window.ethereum.request({ method: "eth_chainId" });
-      if (parseInt(chainId) !== 250) {
-        throw Error("Please select FTM Network in your wallet");
+      // if (parseInt(chainId) !== (250)) {
+      //   throw Error("Please select FTM Network in your wallet");
+      // }
+      if (parseInt(chainId) !== 4) {
+        throw Error("Please select Rinkeby Network in your wallet");
       }
 
       // check if events are registered
@@ -30,7 +40,6 @@ export function Web3ContextProvider({ children }) {
         registerEvents();
         setEventsRegistered(true);
       }
-
     } catch (error) {
       setAddress(null);
       setError(error);
@@ -66,7 +75,7 @@ export function Web3ContextProvider({ children }) {
         loading,
         connectAccount,
         error,
-        eventsRegistered,
+        eventsRegistered
       }}
     >
       {children}

@@ -9,7 +9,29 @@
 }
 
 .warning {
+  width: 90%;
   color: var(--bgText);
   text-align: center;
   margin: auto;
+  margin-top: 0px;
+  overflow-wrap: break-word;
+}
+
+.logo {
+  margin: auto;
+  width: 250px;
+}
+
+.loadingContainer {
+  margin: auto;
+}
+
+.loadingText {
+  color: var(--bgText);
+  text-align: center;
+}
+
+.loadingTextFg {
+  color: var(--fgText);
+  text-align: center;
 }
