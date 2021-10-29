@@ -7,10 +7,11 @@ import style from "./cardWrapper.module.css";
 
 export function CardWrapper(props) {
   const { address } = useWeb3Context();
-  const { scanning, ownedNFTs, startScanning } = useNFTScanner();
+  const { scanning, ownedNFTs, setOwnedNFTs, startScanning } = useNFTScanner();
 
   useEffect(() => {
     if (!scanning && address) {
+      setOwnedNFTs([]);
       startScanning();
     }
   }, [address]);
@@ -32,7 +33,7 @@ export function CardWrapper(props) {
           <br />
           Please Wait ...
         </p>
-        <p className={style.loadingTextFg}>* This may take upto a minute</p>
+        <p className={style.loadingTextFg}>* This may take up to a minute</p>
         <Loader
           type="ThreeDots"
           color="yellow"
