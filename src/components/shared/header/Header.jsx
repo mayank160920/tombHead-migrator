@@ -13,13 +13,17 @@ export function Header() {
 
   useEffect(() => {
     if (address) {
-        toast.success("Wallet Connected",{toastId : 'address'});
-    }}, [address]);
+      toast.success("Wallet Connected", { toastId: "address" });
+    }
+  }, [address]);
 
   useEffect(() => {
     if (error) {
-        toast.error(error.message);
-    }}, [error]);
+      toast.error(error.message);
+    }
+  }, [error]);
+
+  useEffect(() => connectAccount(), []);
 
   return (
     <div className={style.header}>
