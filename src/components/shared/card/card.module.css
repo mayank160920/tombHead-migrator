@@ -4,7 +4,7 @@
   height: 90%;
   padding: 10px;
   max-width: 250px;
-  max-height: 300px;
+  max-height: 350px;
   margin: 10px auto;
   border-radius: var(--borderRadius);
 }
@@ -28,4 +28,9 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+}
+
+.nftName {
+  text-align: center;
+  color: var(--fgText);
 }
