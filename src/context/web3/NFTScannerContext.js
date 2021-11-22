@@ -1,6 +1,5 @@
 import { useState, createContext, useContext } from "react";
 import zftc from "../../data/zftc.json";
-import { nftList } from "../../data/nftIndex.json";
 import { useWeb3Context } from "./Web3Context";
 
 const NFTScannerContext = createContext({});
@@ -10,12 +9,12 @@ export function NFTScanProvider(props) {
   const [scanning, setScanning] = useState(false);
   const [ownedNFTs, setOwnedNFTs] = useState([]);
 
-  async function startScanning() {
+  async function startScanning(scanData) {
     setScanning(true);
 
     const web3 = new window.Web3(window.ethereum);
-    const zftcContract = new web3.eth.Contract(zftc.abi, zftc.address);
-    for (let index of nftList) {
+    const zftcContract = new web3.eth.Contract(zftc.abi, scanData.zftcAddress);
+    for (let index of scanData.nftIds) {
       try {
         const result = await zftcContract.methods.ownerOf(index).call();
         if (result === address) {

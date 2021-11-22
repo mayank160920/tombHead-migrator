@@ -9,7 +9,7 @@ import { fetchMetadata } from "../../../utils/url/fetchMetadata";
 
 import style from "./card.module.css";
 
-export function Card({ tokenId }) {
+export function Card({ tokenId, artist }) {
   const { address } = useWeb3Context();
 
   const [btnBusy, setBtnBusy] = useState(false);
@@ -23,7 +23,12 @@ export function Card({ tokenId }) {
     }
     try {
       setBtnBusy(true);
-      await approveNFT(tokenId, address);
+      await approveNFT(
+        tokenId,
+        artist.zftcAddress,
+        artist.migratorAddress,
+        address
+      );
       toast.success("Approval Successfull");
       setApproved(true);
     } catch (error) {
@@ -41,7 +46,7 @@ export function Card({ tokenId }) {
     }
     try {
       setBtnBusy(true);
-      await migrateNFT(tokenId, address);
+      await migrateNFT(tokenId, artist.migratorAddress, address);
       toast.success("Migration Successfull");
       setMigrated(true);
     } catch (error) {
@@ -57,20 +62,19 @@ export function Card({ tokenId }) {
     fetchMetadata(tokenId).then((_metadata) => setMetadata(_metadata));
   }, []);
 
-  useEffect(() => console.log('metadata : ',metadata),[metadata]);
+  useEffect(() => console.log("metadata : ", metadata), [metadata]);
 
   return (
     <div className={style.card}>
       {metadata.image ? (
-        <img src={metadata.image} alt={`TombHead #${tokenId}`}></img>
+        <img src={metadata.image} alt={`${artist.label} #${tokenId}`}></img>
       ) : (
-        <div className={style.card__text}>TombHead #{tokenId}</div>
+        <div className={style.card__text}>
+          {artist.label} #{tokenId}
+        </div>
       )}
 
-      {metadata.name ? (
-        <p className={style.nftName}>{metadata.name}</p>
-      ) : null
-      }
+      {metadata.name ? <p className={style.nftName}>{metadata.name}</p> : null}
 
       <div className={style.card__buttons}>
         {!migrated ? (

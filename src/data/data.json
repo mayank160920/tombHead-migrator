@@ -1,0 +1,20 @@
+{
+  "clokkworky": {
+    "label": "Clokkworky",
+    "migratorAddress": "0xf4F2244A244593Bb6Aa03d4c4e748c8A3d85FF3b",
+    "zftcAddress": "0xd606543c1c7607bf02B9536e9B31cdc1CF564c1E",
+    "nftIds": [
+      "4247",
+      "2951",
+      "5548",
+      "8083",
+      "673",
+      "6121",
+      "6373",
+      "4269",
+      "498",
+      "8086",
+      "2044"
+    ]
+  }
+}

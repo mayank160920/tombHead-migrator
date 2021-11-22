@@ -4,7 +4,8 @@ import { Spinner } from "../index";
 import style from "./header.module.css";
 import { toast } from "react-toastify";
 
-export function Header() {
+export function Header(props) {
+  const artist = props.artist;
   const { address, loading, connectAccount, error } = useWeb3Context();
 
   function parseAddress(_address) {
@@ -28,7 +29,7 @@ export function Header() {
   return (
     <div className={style.header}>
       <p className={style.header__heading} to="/">
-        TombHeads Migrator
+        {artist?.label || "NFT"} Migrator
       </p>
       {address ? (
         <p className={style.address}>{parseAddress(address)}</p>
