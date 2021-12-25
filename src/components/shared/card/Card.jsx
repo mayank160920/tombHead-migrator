@@ -59,7 +59,7 @@ export function Card({ tokenId, artist }) {
   }
 
   useEffect(() => {
-    fetchMetadata(tokenId).then((_metadata) => setMetadata(_metadata));
+    fetchMetadata(tokenId,artist.zftcAddress).then((_metadata) => setMetadata(_metadata));
   }, []);
 
   useEffect(() => console.log("metadata : ", metadata), [metadata]);

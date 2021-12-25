@@ -1,9 +1,9 @@
 import { fetchTokenURI } from "../web3/fetchTokenUri";
 import { parseUrl } from "./parseUrl";
 
-export async function fetchMetadata(tokenId) {
+export async function fetchMetadata(tokenId,zftcAddress) {
   try {
-    const tokenURI = await fetchTokenURI(tokenId);
+    const tokenURI = await fetchTokenURI(tokenId,zftcAddress);
     const tokenUrl = parseUrl(tokenURI);
     const response = await fetch(tokenUrl);
     const data = await response.json();
