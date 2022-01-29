@@ -134,5 +134,22 @@
       "2048",
       "2045"
     ]
+  },
+  "Fantolanterns": {
+    "label": "Fantolanterns",
+    "migratorAddress": "0x8bdC790E0e3f776f6baba575ba0a8caA37856784",
+    "zftcAddress": "0xd606543c1c7607bf02B9536e9B31cdc1CF564c1E",
+    "nftIds": [
+      "8935",
+      "8938",
+      "8939",
+      "8940",
+      "9437",
+      "9438",
+      "9476",
+      "9477",
+      "9478",
+      "9479"
+    ]
   }
 }
